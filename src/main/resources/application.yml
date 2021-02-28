@@ -1,0 +1,38 @@
+# Spring Boot configuration
+spring:
+  profiles:
+    active: development
+  # Batch configuration
+  batch:
+    initialize-schema: always
+  # Security configuration
+  security:
+    user:
+      name: user
+      password: user
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/database
+    username: postgres
+    password: '0000'
+    continue-on-error: true
+  # JPA properties
+  jpa:    
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop # When you launch the application for the first time - switch "none" at "create"
+# Logger configuration
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    org.springframework: info
+    org.hibernate: debug
+# Server configuration
+server:
+  port: 8080 #set your port
