@@ -11,6 +11,7 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.TaskExecutor;
 
 @Configuration
 @EnableBatchProcessing
@@ -35,11 +36,12 @@ public class MainJob {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Bean
-	public Step step(ItemReader reader, ItemWriter writer) {
+	public Step step(ItemReader reader, ItemWriter writer, TaskExecutor taskExecutor) {
 		return stepBuilderFactory.get(GET_STEP)
 				.chunk(1)
 				.reader(reader)
 				.writer(writer)
+				.taskExecutor(taskExecutor)
 				.build();
 	}
 

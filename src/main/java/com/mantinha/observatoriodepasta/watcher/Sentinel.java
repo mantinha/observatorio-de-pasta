@@ -11,6 +11,8 @@ import java.nio.file.WatchService;
 
 public class Sentinel {
 	
+	private boolean state = false;
+	
 	public void watcher() throws IOException, InterruptedException {
 		
 //		final String RESOURCE = new ClassPathResource("").getURL().getPath();
@@ -25,10 +27,15 @@ public class Sentinel {
 	    while ((key = watchService.take()) != null) {
 	        for (WatchEvent<?> event : key.pollEvents()) {
 	            System.out.println("Event kind:" + event.kind() + ". File affected: " + event.context() + ".");
+	            state();
 	        }
 	        key.reset();
 	    }
 
-	    watchService.close();
+	    watchService.close();	    
+	}
+	
+	public boolean state() {
+		return this.state = !state;
 	}
 }

@@ -33,6 +33,7 @@ public class Steps {
 				.fixedLength()
 				.columns(new Range[] {new Range(1,3), new Range(4,6)})
 				.names(new String[] {"name", "lastName"})
+				.saveState(false)
 				.targetType(Person.class)
 				.build();
 	}
